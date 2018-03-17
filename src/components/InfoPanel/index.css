@@ -1,0 +1,72 @@
+.InfoPanel {
+  position: absolute;
+  height: 150px;
+  padding: 5px;
+  width: 160px;
+  top: 16%;
+  left: 24px;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 2;
+  text-align: justify;
+}
+
+.InfoPanel-List {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  font-family: 'VT323', monospace;
+  color: green;
+  font-size: 16px;
+}
+
+.InfoPanel-List li  {
+  display: flex;
+  animation: interferenceSkew 2s  infinite;
+}
+
+.InfoPanel-List li span {
+  display: block;
+  padding: 0px 8px;
+  width: 33%;
+}
+
+
+@keyframes interferenceSkew {
+  0% {
+    transform: skewX(0deg)
+  }
+  10% {
+    transform: skewX(0deg)
+  }
+  20% {
+    transform: skewX(0deg)
+  }
+  30% {
+    transform: skewX(0deg)
+  }
+  40% {
+    transform: skewX(0deg)
+  }
+  50% {
+    transform: skewX(0deg)
+  }
+  60% {
+    transform: skewX(0deg)
+  }
+  70% {
+    transform: skewX(0deg)
+  }
+  90% {
+    transform: skewX(0deg)
+  }
+  95% {
+    transform: skewX(0deg)
+  }
+  98% {
+    transform: skewX(80deg)
+  }
+  100% {
+    transform: skewX(0deg)
+  }
+
+}
