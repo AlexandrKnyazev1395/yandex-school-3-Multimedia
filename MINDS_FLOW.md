@@ -6,11 +6,6 @@
 
 ## Файловая структура
 
-* assets - здесь собраны статические файлы (музыка, изображения)
-* components - React-компоненты
-
-* multimediaTools -классы для работы с Multimedia API
-
       |-- docs собранный проект для github pages
       |-- node_modules - модули, используемые в проекте
       |-- src
