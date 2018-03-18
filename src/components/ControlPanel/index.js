@@ -20,13 +20,12 @@ export default class ControlPanel extends Component {
     this.props.changeSongMode(newMode);
   }
 
-
   render() {
     return (
       <div className="ControlPanel">
-        <button onClick={this.handleHeadphonesClick}>
-          put {!this.props.songMode ? 'on' : 'off' } headphones
-        </button>
+        <span>Press "H" to put on/off headphones</span>
+        <span>And wait for the magick)</span>
+        
       </div>
     )
   }

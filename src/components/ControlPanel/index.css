@@ -1,4 +1,15 @@
 .ControlPanel {
-  padding: 10px;
-  
+  position: absolute;
+  width: 220px;
+  height: 100px;
+  left: 0;
+  top: 0;
+  background-color: black;
+  color: white;  
+  text-align: left;
+}
+
+.ControlPanel span {
+  display: block;
+  margin: 10px;
 }
