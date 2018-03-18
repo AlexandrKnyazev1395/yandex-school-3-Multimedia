@@ -93,9 +93,7 @@ export default class AudioPanel extends Component {
     var analyser = audioTools.audioAnalyser(audioContext);
     mediaSource.connect(analyser);
     setAudioData.apply(this);
-    let lastOperationTime = performance.now()
     function setAudioData() {
-      lastOperationTime = performance.now()
       this.setState({
         audioVolume: analyser.volume,
         frequencyData: analyser.frequencyData

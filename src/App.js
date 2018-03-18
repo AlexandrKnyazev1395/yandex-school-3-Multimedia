@@ -5,10 +5,6 @@ import TerminatorView from './components/TerminatorView';
 import ControlPanel from './components/ControlPanel';
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-  }
-  
   render() {
     return (
       <div className="App">

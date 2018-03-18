@@ -27,7 +27,7 @@ export default class InfoPanel extends Component {
   componentWillReceiveProps = (nextProps) => {
     const isDanceContent = nextProps.infoPanelOptions.isDanceContent;
     const oldIsDanceContent = this.props.infoPanelOptions.isDanceContent;
-    if (isDanceContent != oldIsDanceContent) {
+    if (isDanceContent !== oldIsDanceContent) {
       if (this.state.currentUpdatingInterval) {
         clearInterval(this.state.currentUpdatingInterval)
         const currentUpdatingInterval = this.createUpdatingInterval(isDanceContent);
