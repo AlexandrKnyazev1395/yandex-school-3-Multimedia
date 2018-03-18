@@ -35,7 +35,7 @@ export default class InfoPanel extends Component {
   makeInfoPanelList(infoPanelData) {
     const InfoPanelItems = infoPanelData.map((itemData, index) => {
       return (
-        <InfoPanelItem itemData={itemData} indexData={index}  />
+        <InfoPanelItem key={index} itemData={itemData} indexData={index}  />
       )
     });
     return (

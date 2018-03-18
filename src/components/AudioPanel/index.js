@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import AudioFrequency from './AudioFrequency'
 import ScaleItem from './ScaleItem';
 
 import AudioTools from '../../multimediaTools/AudiooTools';
@@ -21,6 +22,7 @@ export default class AudioPanel extends Component {
     this.state = {
       songMode: false,
       audioVolume: 0,
+      frequencyData: [],
       currentAudioContext: null,
       rafID: null
     }
@@ -96,7 +98,8 @@ export default class AudioPanel extends Component {
 
     function setAudioVolume(time) {
       this.setState({
-        audioVolume: meter.volume
+        audioVolume: meter.volume,
+        frequencyData: meter.frequencyData
       })
       const bassLevel = 0.55;
       if (meter.volume > bassLevel) {
@@ -128,9 +131,12 @@ export default class AudioPanel extends Component {
 
   render() {
     const audioScaleElements = this.makeAudioScaleItems(this.state.audioVolume);
+    
+    
     return (
       <div className="AudioPanel">
         {audioScaleElements}
+        <AudioFrequency frequencyData={this.state.frequencyData} />
       </div>
     )
   }

@@ -18,3 +18,21 @@
 .AudioPanel-ScaleItem_isLoaded {
   background-color: green;
 }
+
+/*todo: rename*/
+.AudioFrequency {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  width: 250px;
+  height: 200px;
+  left: -235px;
+  top: 170px;
+}
+
+.AudioFrequencyColumn {
+  margin: 1px;
+  height: 10%;
+  background-color: green;
+}
