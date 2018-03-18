@@ -16,17 +16,18 @@
   list-style-type: none;
   font-family: 'VT323', monospace;
   color: green;
-  font-size: 16px;
+  
 }
 
 .InfoPanel-List li  {
   display: flex;
-  animation: interferenceSkew 2s  infinite;
+  animation: interferenceSkew 2s infinite;
+  font-size: 15px;
 }
 
 .InfoPanel-List li span {
   display: block;
-  padding: 0px 8px;
+  padding: 0px 4px;
   width: 33%;
 }
 

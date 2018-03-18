@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 
-import AudioFrequency from './AudioFrequency'
-import ScaleItem from './ScaleItem';
+import AudioFrequency from './AudioFrequency';
+import AudioVolume from './AudioVolume';
 
 import AudioTools from '../../multimediaTools/AudiooTools';
 
 import './index.css';
 
 import audio1 from '../../assets/audio/1.mp3'
-import audio2 from '../../assets/audio/2.mp3'
 
 const SONGS = {
-  1: audio1,
-  2: audio2
+  1: audio1
 }
 
 export default class AudioPanel extends Component {
@@ -28,20 +26,20 @@ export default class AudioPanel extends Component {
     }
     this.processSong = this.processSong.bind(this);
     this.processStreamVoice = this.processStreamVoice.bind(this);
-    this.lookForVolume = this.lookForVolume.bind(this);
+    this.analyseAudio = this.analyseAudio.bind(this);
     this.addHeadphonesSwitcher = this.addHeadphonesSwitcher.bind(this);
     this.addHeadphonesSwitcher();
   }
 
   addHeadphonesSwitcher() {
     document.addEventListener('keydown', (e) => {
-      if(this.state.currentAudioContext) {
+      if (this.state.currentAudioContext) {
         this.state.currentAudioContext.close();
       }
-      if(this.state.rafID) {
+      if (this.state.rafID) {
         cancelAnimationFrame(this.state.rafID)
       }
-      
+
       if (e.keyCode === 72) {
         this.setState({
           songMode: !this.state.songMode,
@@ -70,7 +68,7 @@ export default class AudioPanel extends Component {
   processStreamVoice(webcamStream) {
     const audioContext = new AudioContext();
     var mediaStreamSource = audioContext.createMediaStreamSource(webcamStream);
-    this.lookForVolume(audioContext, mediaStreamSource);
+    this.analyseAudio(audioContext, mediaStreamSource);
 
     this.setState({
       currentAudioContext: audioContext
@@ -83,59 +81,40 @@ export default class AudioPanel extends Component {
     audio.autoplay = true
     const audioContext = new AudioContext();
     var mediaElementSource = audioContext.createMediaElementSource(audio);
-    this.lookForVolume(audioContext, mediaElementSource);
+    this.analyseAudio(audioContext, mediaElementSource);
     mediaElementSource.connect(audioContext.destination); //play music
     this.setState({
       currentAudioContext: audioContext
     })
   }
 
-  lookForVolume(audioContext, mediaSource) {
+  analyseAudio(audioContext, mediaSource) {
     const audioTools = new AudioTools();
-    var meter = audioTools.volumeMeter(audioContext);
-    mediaSource.connect(meter);
-    setAudioVolume.apply(this);
-
-    function setAudioVolume(time) {
+    var analyser = audioTools.audioAnalyser(audioContext);
+    mediaSource.connect(analyser);
+    setAudioData.apply(this);
+    let lastOperationTime = performance.now()
+    function setAudioData() {
+      lastOperationTime = performance.now()
       this.setState({
-        audioVolume: meter.volume,
-        frequencyData: meter.frequencyData
+        audioVolume: analyser.volume,
+        frequencyData: analyser.frequencyData
       })
-      const bassLevel = 0.55;
-      if (meter.volume > bassLevel) {
+      const bassLevel = 0.55; //значение получено экспериментально
+      if (this.state.songMode && analyser.volume > bassLevel) {
         this.props.makeActionByAudio('bass');
       }
-      var rafID = requestAnimationFrame(setAudioVolume.bind(this));
+      var rafID = requestAnimationFrame(setAudioData.bind(this));
       this.setState({
         rafID
       })
     };
   }
 
-  makeAudioScaleItems(audioVolume) {
-    const scaleItems = [];
-    const amountScaleItems = 15; //количество элементов на шкале громкости
-    const levelModificator = 1.3; //для большего разброса значений
-    const drawingLevel = amountScaleItems * audioVolume * levelModificator; //количество закрашиваемых элементов на шкале
-    for (let i = 0; i < amountScaleItems; i++) {
-      const isLoaded = i <= drawingLevel;
-      scaleItems.push(
-        <ScaleItem
-          key={"scale" + i}
-          heightPercent={100 / amountScaleItems}
-          isLoaded={isLoaded}
-        />)
-    }
-    return scaleItems;
-  }
-
   render() {
-    const audioScaleElements = this.makeAudioScaleItems(this.state.audioVolume);
-    
-    
     return (
       <div className="AudioPanel">
-        {audioScaleElements}
+        <AudioVolume audioVolume={this.state.audioVolume} />
         <AudioFrequency frequencyData={this.state.frequencyData} />
       </div>
     )

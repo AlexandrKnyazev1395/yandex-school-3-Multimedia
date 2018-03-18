@@ -1,11 +1,16 @@
 .AudioPanel {
   position: absolute;
+  top: 16%;
+  left: calc(100% - 50px);
+  width: 50px;
+}
+
+.AudioPanel-Volume {
   display: flex;
   flex-direction: column-reverse;
   width: 12px;
   height: 150px;
   top: 16%;
-  left: calc(100% - 48px);
 }
 
 .AudioPanel-ScaleItem {
@@ -14,24 +19,22 @@
   border: 1px solid green;
   border-collapse: none;
 }
-
 .AudioPanel-ScaleItem_isLoaded {
   background-color: green;
 }
 
-/*todo: rename*/
-.AudioFrequency {
+
+.AudioPanel-AudioFrequency {
   position: relative;
+  margin-top: 20px;
+  left: -35px;
   display: flex;
   align-items: flex-end;
   flex-direction: column;
-  width: 250px;
-  height: 200px;
-  left: -235px;
-  top: 170px;
+  height: 180px;
 }
 
-.AudioFrequencyColumn {
+.AudioPanel-AudioFrequencyColumn {
   margin: 1px;
   height: 10%;
   background-color: green;

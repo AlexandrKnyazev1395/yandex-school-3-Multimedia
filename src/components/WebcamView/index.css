@@ -20,6 +20,10 @@
   mix-blend-mode: color-burn;
   animation: interferenceTranslate 4ms infinite;
 }
+
+.Video-Canvas_isScaled {
+  animation: dancingAnimation 0.8s infinite;
+}
   
 
 @keyframes interferenceTranslate {
@@ -38,6 +42,24 @@
   100% {
     transform: scale(1.1) translate(2px, 2px) skewX(2deg)
   }
-
 }
 
+
+@keyframes dancingAnimation {
+  0% {
+    transform: scale(1) translate(-10px, 0px)
+  }
+  25% {
+    transform: scale(1.5) translate(-5px, -30px)
+  }
+  50% {
+    transform: scale(1.8) translate(0px, -60px)
+  }
+  75% {
+    transform: scale(1.4) translate(5px, -90px)
+  }
+  100% {
+    transform: scale(1) translate(10px, 0px)
+  }
+
+}

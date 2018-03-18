@@ -3,7 +3,6 @@ function playCameraStream(video, stream, videoOptions) {
   video.src = window.URL.createObjectURL(stream);
   // проигрываем видео
   video.autoPlay = true;
-  //video.play();
   if(videoOptions.isMuted) {
     video.muted = true;
   }

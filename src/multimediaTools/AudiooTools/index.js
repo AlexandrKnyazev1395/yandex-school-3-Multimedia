@@ -1,8 +1,7 @@
-import volumeMeter from './volumeMeter';
-import volume from './volume'
+import audioAnalyser from './audioAnalyser';
+
 class AudioTools {
-  volumeMeter = volumeMeter
-  volume=volume
+  audioAnalyser = audioAnalyser
 }
 
 export default AudioTools;

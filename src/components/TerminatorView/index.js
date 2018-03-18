@@ -12,10 +12,11 @@ export default class TerminatorView extends Component {
     this.state = {
       webcamStream: null,
       webcamViewOptions: {
-        backgroundColor: 'rgb(211, 80, 80)'
+        backgroundColor: 'rgb(211, 80, 80)',
+        isDanceWebcam: false
       },
       infoPanelOptions: {
-        danceContent: false
+        isDanceContent: false
       }
     }
     this.getWebcamStream = this.getWebcamStream.bind(this);
@@ -33,10 +34,11 @@ export default class TerminatorView extends Component {
       const rgbArray = Array(3).fill().map(() => Math.floor(50 + Math.random() * (220 + 1 - 20)))
       this.setState({
         webcamViewOptions: {
-          backgroundColor: `rgb(${rgbArray[0]}, ${rgbArray[1]}, ${rgbArray[2]})`, 
+          backgroundColor: `rgb(${rgbArray[0]}, ${rgbArray[1]}, ${rgbArray[2]})`,
+          isDanceWebcam: true
         },
         infoPanelOptions: {
-          danceContent: true
+          isDanceContent: true
         }
       })
     }
@@ -44,9 +46,10 @@ export default class TerminatorView extends Component {
       this.setState({
         webcamViewOptions: {
           backgroundColor: 'rgb(211, 80, 80)',
+          isDanceWebcam: false
         },
         infoPanelOptions: {
-          danceContent: false
+          isDanceContent: false
         }
       })
     }
@@ -54,9 +57,10 @@ export default class TerminatorView extends Component {
       this.setState({
         webcamViewOptions: {
           backgroundColor: 'rgb(228, 98, 189)',
+          isDanceWebcam: false
         },
         infoPanelOptions: {
-          danceContent: false
+          isDanceContent: false
         }
       })
     }
